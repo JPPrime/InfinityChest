@@ -2,18 +2,14 @@ package com.jpprime.infinitychest;
 
 import com.jpprime.infinitychest.block.InfinityChestBlock;
 import com.jpprime.infinitychest.menu.InfinityChestMenu;
-import com.jpprime.infinitychest.client.InfinityChestScreen;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -33,14 +29,9 @@ public final class InfinityChestMod {
     public static final DeferredHolder<MenuType<?>, MenuType<InfinityChestMenu>> INFINITY_CHEST_MENU =
             MENUS.register("infinity_chest", () -> IMenuTypeExtension.create((id, inventory, data) -> new InfinityChestMenu(id, inventory)));
 
-    public InfinityChestMod(IEventBus modBus, ModContainer modContainer) {
+    public InfinityChestMod(IEventBus modBus, net.neoforged.fml.ModContainer modContainer) {
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
         MENUS.register(modBus);
-    }
-
-    @net.neoforged.bus.api.SubscribeEvent
-    public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(INFINITY_CHEST_MENU.get(), InfinityChestScreen::new);
     }
 }
