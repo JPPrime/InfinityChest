@@ -26,6 +26,7 @@ jobs:
       - name: Build mod
         run: gradle build --no-daemon
       - name: Upload mod JAR
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: InfinityChest-Minecraft-1.21.1
