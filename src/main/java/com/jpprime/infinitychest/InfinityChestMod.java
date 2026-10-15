@@ -5,12 +5,15 @@ import com.jpprime.infinitychest.menu.InfinityChestMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -29,9 +32,16 @@ public final class InfinityChestMod {
     public static final DeferredHolder<MenuType<?>, MenuType<InfinityChestMenu>> INFINITY_CHEST_MENU =
             MENUS.register("infinity_chest", () -> IMenuTypeExtension.create((id, inventory, data) -> new InfinityChestMenu(id, inventory)));
 
-    public InfinityChestMod(IEventBus modBus, net.neoforged.fml.ModContainer modContainer) {
+    public InfinityChestMod(IEventBus modBus, ModContainer modContainer) {
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
         MENUS.register(modBus);
+        modBus.addListener(this::addCreative);
+    }
+
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(INFINITY_CHEST_ITEM.get());
+        }
     }
 }
