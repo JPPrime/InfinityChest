@@ -19,8 +19,8 @@ public final class InfinityChestScreen extends AbstractContainerScreen<InfinityC
 
     @Override
     protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
-        graphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, 6 * 18 + 17);
-        graphics.blit(TEXTURE, leftPos, topPos + 6 * 18 + 17, 0, 126, imageWidth, 96);
+        graphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, 3 * 18 + 17);
+        graphics.blit(TEXTURE, leftPos, topPos + 3 * 18 + 17, 0, 126, imageWidth, 96);
     }
 
     @Override
