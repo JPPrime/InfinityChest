@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "OCO",
+    "OOO"
+  ],
+  "key": {
+    "O": { "item": "minecraft:obsidian" },
+    "C": { "item": "minecraft:chest" }
+  },
+  "result": {
+    "id": "infinitychest:infinity_chest",
+    "count": 1
+  }
+}
